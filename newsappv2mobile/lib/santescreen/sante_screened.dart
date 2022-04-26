@@ -35,19 +35,20 @@ class Readingsante extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Align(
+                 Align(
                     alignment: Alignment.centerLeft,
                     child: IconButton(
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(
                         Icons.arrow_back_ios,
-                        color: Colors.black,
+                        color:  Color.fromARGB(255, 57, 130, 173),
+                        
                       ),
                     ),
                   ),
-                  Text("WNews v1.3",
+                  Text("WNews v2",
                       style: GoogleFonts.poppins(
-                          fontSize: 15, color: Colors.white)),
+                          fontSize: 15,  fontWeight: FontWeight.bold, color: Colors.white),)
                 ],
               )),
           titleSpacing: 0,

@@ -3,6 +3,7 @@ import 'package:newsappv2mobile/model.dart';
 import 'package:newsappv2mobile/const.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:like_button/like_button.dart';
 
 class ReadingNews extends StatelessWidget {
   final NewsApiModel model;
@@ -41,13 +42,14 @@ class ReadingNews extends StatelessWidget {
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(
                         Icons.arrow_back_ios,
-                        color: Colors.black,
+                        color:  Color.fromARGB(255, 57, 130, 173),
+                        
                       ),
                     ),
                   ),
-                  Text("WNews v1.3",
+                  Text("WNews v2",
                       style: GoogleFonts.poppins(
-                          fontSize: 15, color: Colors.white)),
+                          fontSize: 15,  fontWeight: FontWeight.bold, color: Colors.white),)
                 ],
               )),
           titleSpacing: 0,
@@ -333,9 +335,11 @@ class ReadingNews extends StatelessWidget {
                 bottom: 20,
                 left: 20,
                 child: Row(
-                    children: [
-                  IconButton(onPressed: (){}, 
-                  icon: const Icon(Icons.favorite_border)),
+                    children: const [
+                         LikeButton(
+                           likeCount: 22,
+                     
+                         ),
                     ],
               )),
             ],

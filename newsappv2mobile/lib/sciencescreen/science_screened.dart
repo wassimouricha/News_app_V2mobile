@@ -41,13 +41,14 @@ class Readingscience extends StatelessWidget {
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(
                         Icons.arrow_back_ios,
-                        color: Colors.black,
+                        color:  Color.fromARGB(255, 57, 130, 173),
+                        
                       ),
                     ),
                   ),
-                  Text("WNews v1.3",
+                  Text("WNews v2",
                       style: GoogleFonts.poppins(
-                          fontSize: 15, color: Colors.white)),
+                          fontSize: 15,  fontWeight: FontWeight.bold, color: Colors.white),)
                 ],
               )),
           titleSpacing: 0,
