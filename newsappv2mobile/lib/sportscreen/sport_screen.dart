@@ -183,17 +183,19 @@ class _SportScreenState extends State<SportScreen> {
             children: [
               Container(
                 //le container de mon image
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                margin: const EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey[200]),
-                child: model.imageUrl != ""
-                    ? Image.network(
-                        model.imageUrl,
-                        fit: BoxFit.cover,
-                      )
-                    : const Text("Impossible de charger"),
+                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                   margin: const EdgeInsets.symmetric(vertical: 5),
+                   color: Colors.grey[200],
+                child: ClipRRect(
+                   borderRadius: BorderRadius.circular(10),
+                   child: model.imageUrl != ""
+                      ? Image.network(
+                          model.imageUrl,
+                          fit: BoxFit.cover,
+                          
+                        )
+                      : const Text("Impossible de charger"),
+                ),
               ),
               Container(
                 //le container de mon titre
