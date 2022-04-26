@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:newsappv2mobile/home_screen.dart';
+// import 'package:newsappv2mobile/home_screen.dart';
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:newsappv2mobile/splash_screen.dart';
 
 
 
@@ -45,7 +46,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
         dividerColor: Colors.black,
       ),
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

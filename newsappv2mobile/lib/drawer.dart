@@ -175,6 +175,15 @@ Widget buildMenuItems(BuildContext context) => Wrap(
           onTap: () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const loginaid())),
         ),
+          ListTile(
+          leading: const Icon(Icons.post_add),
+          title: Text(
+            'Blog',
+            style: GoogleFonts.poppins(fontSize: 15, color: Colors.black),
+          ),
+          onTap: () => Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const loginaid())),
+        ),
         InkWell(
           borderRadius: BorderRadius.circular(500),
           splashColor: Colors.black,

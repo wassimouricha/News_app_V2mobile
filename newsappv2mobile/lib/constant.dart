@@ -5,6 +5,7 @@ const kPrimaryColor = Color(0xFF035AA6);
 const kSecondaryColor = Color(0xFFFFA418);
 const kTextColor = Color(0xFF747474);
 const kBlackColor = Color.fromARGB(255, 0, 0, 0);
+const Color cafeDark = Color.fromARGB(255, 0, 0, 0);
 
 const kDefaultPadding = 20.0;
 
