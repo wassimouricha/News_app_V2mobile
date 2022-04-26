@@ -187,7 +187,7 @@ class _connexionPageState extends State<connexionPage> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 25),
+                          const SizedBox(height: 15),
                           delayedAnimation(
                             delay: 3000,
                             child: Container(
@@ -209,6 +209,7 @@ class _connexionPageState extends State<connexionPage> {
                               ),
                             ),
                           ),
+                          const SizedBox(height: 10),
                           delayedAnimation(
                             delay: 3500,
                             child: Container(
