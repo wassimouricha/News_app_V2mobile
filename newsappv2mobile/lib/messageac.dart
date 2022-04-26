@@ -17,7 +17,7 @@ class WelcomeWidget extends StatelessWidget {
         Text(
           "Informez vous en cliquant sur les articles dans la liste",
           style:  GoogleFonts.poppins(fontSize: 10,
-          color: Colors.grey[700]),
+          color:  const Color.fromARGB(255, 57, 130, 173),)
         )
       ],
     );
