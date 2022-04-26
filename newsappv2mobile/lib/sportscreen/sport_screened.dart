@@ -126,7 +126,7 @@ class Readingsport extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          ("Publié le ") + model.publishedAt,
+                          ("Publié le ") + getTruncatedContent(model.publishedAt, 10),
                           style: const TextStyle(
                             fontSize: 13,
                             color: Colors.black,
@@ -200,7 +200,7 @@ class Readingsport extends StatelessWidget {
 
   String getTruncatedContent(String text, int truncatedNumber) {
     return text.length > truncatedNumber
-        ? text.substring(0, truncatedNumber) + "..."
+        ? text.substring(0, truncatedNumber) 
         : text;
   }
 }
