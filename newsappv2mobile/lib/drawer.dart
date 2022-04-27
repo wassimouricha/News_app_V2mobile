@@ -1,13 +1,14 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:newsappv2mobile/blog/bloghome.dart';
 import 'package:newsappv2mobile/home_screen.dart';
 import 'package:newsappv2mobile/user_profile/user_page_v2.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappv2mobile/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:newsappv2mobile/signup.dart';
-import 'package:newsappv2mobile/postb/prest.dart';
+
 
 //mon drawer = ma sidebar
 
@@ -183,7 +184,7 @@ Widget buildMenuItems(BuildContext context) => Wrap(
             style: GoogleFonts.poppins(fontSize: 15, color: Colors.black),
           ),
           onTap: () => Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const Prestation())),
+              MaterialPageRoute(builder: (context) => const BlogHome())),
         ),
         InkWell(
           borderRadius: BorderRadius.circular(500),

@@ -1,4 +1,4 @@
-import 'package:newsappv2mobile/list/detaillist.dart';
+import 'package:newsappv2mobile/list/detail.dart';
 import 'package:newsappv2mobile/list/presta.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +28,7 @@ class ListPresta extends StatelessWidget {
                   ),
                 ),
               ),
+          
               ListView.builder(
                 itemCount: prestation
                     .length, //voir presta.dart si tu veux utiliser la list locale
