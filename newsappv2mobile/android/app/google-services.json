@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "517870258699",
+    "project_id": "newsappwassim-d200c",
+    "storage_bucket": "newsappwassim-d200c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517870258699:android:6ba0fbddbc4b8497e8950e",
+        "android_client_info": {
+          "package_name": "com.example.newsappwassim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517870258699-oo1i546kam2fb7nga7isaf9hv251sri8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.newsappwassim",
+            "certificate_hash": "7082832ac1585f7f1b532096388ee85755ff0db0"
+          }
+        },
+        {
+          "client_id": "517870258699-0aoh3ans0ln1d9caaeh0u454mpb9vuac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOMPb2RbsTegqR4zKfSfgGB28iYv_0dRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517870258699-0aoh3ans0ln1d9caaeh0u454mpb9vuac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

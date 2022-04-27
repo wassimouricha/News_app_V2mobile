@@ -120,7 +120,7 @@ class _BottomPart extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
-            const SizedBox(height: 30.0),
+            const SizedBox(height: 10.0),
             Text(
               "Suivez l'actualité du jour sur un média gratuit. "
               "Politique, Sport, Culture, High Tech... toute l'info en continu.",
@@ -130,7 +130,7 @@ class _BottomPart extends StatelessWidget {
                 height: 1.5,
               ),
             ),
-            const SizedBox(height: 50.0),
+            const SizedBox(height: 30.0),
             Align(
               alignment: Alignment.centerRight,
               child: GestureDetector(
