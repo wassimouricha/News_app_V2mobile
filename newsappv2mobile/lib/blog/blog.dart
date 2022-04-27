@@ -15,7 +15,9 @@ class _ListBlogState extends State<ListBlog> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:   TextField(controller: controller,),
+        title: TextField(
+          controller: controller,
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -27,20 +29,44 @@ class _ListBlogState extends State<ListBlog> {
         ],
       ),
     );
-
-    
   }
-  
-   Future createUser({required String name}) async {
-      final docUser =
-          FirebaseFirestore.instance.collection("users").doc("my-id");
 
-      final json = {
-        "name": name,
-        "age": 27,
-        "publication" : DateTime(2022, 04, 22),
-      };
+  Future createUser({required String name}) async {
+    final docUser = FirebaseFirestore.instance.collection("users").doc();
 
-      await docUser.set(json);
-    }
+    final user = Users(
+      id: docUser.id,
+      name: name,
+      age: 27,
+      birthday: DateTime(2022, 04, 22),
+    );
+
+    final json = user.toJson();
+
+    await docUser.set(json);
+  }
+}
+
+class Users {
+  String id;
+  final String name;
+  final int age;
+  final DateTime birthday;
+
+  Users({
+    this.id = "",
+    required this.name,
+    required this.age,
+    required this.birthday,
+  });
+
+  Map<String, dynamic> toJson() => {
+
+"id" : id,
+"name" : name,
+"age" : age,
+"birthday" : birthday,
+
+
+  };
 }
