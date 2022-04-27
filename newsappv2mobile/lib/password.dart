@@ -64,7 +64,7 @@ class _HomeScreenState extends State<ForgotPassword> {
                     onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-                const Text("Wassim News App v1.2",
+                const Text("Wassim News App v2",
                     style: TextStyle(fontSize: 15, color: Colors.black)),
               ],
             )),

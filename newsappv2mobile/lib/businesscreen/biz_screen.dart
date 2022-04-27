@@ -71,7 +71,7 @@ class _BizScreenState extends State<BizScreen> {
                     onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-                Text("Wassim News App v1.2",
+                Text("Wassim News App v2",
                     style: GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
               ],
             )),

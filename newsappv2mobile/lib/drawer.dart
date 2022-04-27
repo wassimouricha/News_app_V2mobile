@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:newsappv2mobile/blog/bloghome.dart';
+import 'package:newsappv2mobile/blog/bloglist.dart';
 import 'package:newsappv2mobile/home_screen.dart';
 import 'package:newsappv2mobile/user_profile/user_page_v2.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,8 +54,9 @@ class NavigationDraweer extends StatelessWidget {
                             children: [
                               const CircleAvatar(
                                 radius: 52,
-                                backgroundImage: NetworkImage(
-                                    'https://media-exp1.licdn.com/dms/image/D4E03AQHKyal9OiD12g/profile-displayphoto-shrink_800_800/0/1648624925960?e=2147483647&v=beta&t=NimRdFpaBcn7mrK3Abem2USfCRhEsZ8K7-h8NAQ9xYY'),
+                                backgroundColor: Colors.white,
+                                backgroundImage: AssetImage(
+                                    'image/user.png'),
                               ),
                               const SizedBox(
                                 height: 12,
@@ -110,8 +112,9 @@ class NavigationDraweer extends StatelessWidget {
                             children: [
                               const CircleAvatar(
                                 radius: 52,
-                                backgroundImage: NetworkImage(
-                                    'https://media-exp1.licdn.com/dms/image/D4E03AQHKyal9OiD12g/profile-displayphoto-shrink_800_800/0/1648624925960?e=2147483647&v=beta&t=NimRdFpaBcn7mrK3Abem2USfCRhEsZ8K7-h8NAQ9xYY'),
+                                backgroundColor: Colors.white,
+                                backgroundImage: AssetImage(
+                                    'image/user.png')
                               ),
                               const SizedBox(
                                 height: 12,
@@ -181,6 +184,15 @@ Widget buildMenuItems(BuildContext context) => Wrap(
           leading: const Icon(Icons.post_add),
           title: Text(
             'Blog',
+            style: GoogleFonts.poppins(fontSize: 15, color: Colors.black),
+          ),
+          onTap: () => Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const ListBloged())),
+        ),
+           ListTile(
+          leading: const Icon(Icons.post_add),
+          title: Text(
+            'Ajouter un post au blog',
             style: GoogleFonts.poppins(fontSize: 15, color: Colors.black),
           ),
           onTap: () => Navigator.of(context).pushReplacement(

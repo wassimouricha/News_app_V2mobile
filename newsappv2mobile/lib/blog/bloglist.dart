@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:newsappv2mobile/blog/bloghome.dart';
 import 'package:newsappv2mobile/constant.dart';
+import 'package:newsappv2mobile/home_screen.dart';
 
 class ListBloged extends StatefulWidget {
   const ListBloged({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class _ListBlogedState extends State<ListBloged> {
                   child: IconButton(
                     onPressed: () => Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                            builder: (context) => const BlogHome())),
+                            builder: (context) => const HomeScreen())),
                     icon: const Icon(
                       Icons.arrow_back_ios,
                       color: Color.fromARGB(255, 57, 130, 173),
@@ -112,7 +112,7 @@ class _ListBlogedState extends State<ListBloged> {
                   height: 160,
                   width: 200,
                   child: Image.asset(
-                    "image/micro.png",
+                    "image/blogpost.png",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -168,7 +168,7 @@ class _ListBlogedState extends State<ListBloged> {
                           ),
                         ),
                         child: Text(
-                          "Titre : " + users.titre,
+                           users.titre,
                           style: Theme.of(context).textTheme.button,
                         ),
                       ),
