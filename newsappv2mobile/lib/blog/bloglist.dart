@@ -17,6 +17,7 @@ class _ListBlogedState extends State<ListBloged> {
   List<Article>? newsList;
     bool isLoading = true;
 
+
   @override
   Widget build(BuildContext context) {
     //  final Size size = MediaQuery.of(context).size;
