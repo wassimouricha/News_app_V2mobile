@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappv2mobile/constant.dart';
 import 'package:newsappv2mobile/home_screen.dart';
+import 'package:newsappv2mobile/list/body.dart';
+import 'package:newsappv2mobile/list/modeles.dart';
 
 class ListBloged extends StatefulWidget {
   const ListBloged({Key? key}) : super(key: key);
@@ -12,14 +14,12 @@ class ListBloged extends StatefulWidget {
 }
 
 class _ListBlogedState extends State<ListBloged> {
-  final controller = TextEditingController();
-  final controllerName = TextEditingController();
-  final controllerTitle = TextEditingController();
-  final controllerDescription = TextEditingController();
+  List<Article>? newsList;
+    bool isLoading = true;
 
   @override
   Widget build(BuildContext context) {
-    
+    //  final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         //ici je code mon app bar qui me redirige vers l'accueil
@@ -54,15 +54,27 @@ class _ListBlogedState extends State<ListBloged> {
             )),
         titleSpacing: 0,
       ),
-      body: 
-      StreamBuilder<List<Users>>(
+      body: StreamBuilder<List<Users>>(
           stream: readUsers(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final users = snapshot.data!;
 
-              return ListView(
-                children: users.map(buildUsers).toList(),
+              return 
+              // isLoading
+              //     ? SizedBox(
+              //         height: size.height / 20,
+              //         width: size.height / 20,
+              //         child: const CircularProgressIndicator(),
+              //       )
+              //     :
+                  Expanded(
+                child: ListView.builder(
+                  itemCount: newsList!.length,
+                  itemBuilder: (context, index) {
+                    return buildUsers(users[index], newsList![index]);
+                  },
+                ),
               );
             } else if (snapshot.hasError) {
               // print(snapshot.error);
@@ -76,110 +88,137 @@ class _ListBlogedState extends State<ListBloged> {
     );
   }
 
-  Widget buildUsers(Users users) => 
-  
-  
-  Column(
-    children: [
-      const SizedBox(height: 15,),
-      Stack(
-
-        
-            alignment: Alignment.bottomCenter,
-            children: <Widget>[
-              //nos background
-              Container(
-                height: 136,
-                decoration: BoxDecoration(
-                  boxShadow: const [kDefaultShadow],
-                  borderRadius: BorderRadius.circular(22),
-                  color:  kBlackColor ,
-                ),
-                child: Container(
-                  margin: const EdgeInsets.only(right: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(22),
-                  ),
-                ),
-              ),
-              // nos images de prestations
-              Positioned(
-                top: 10,
-                right: 0,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                  height: 160,
-                  width: 200,
-                  child: Image.asset(
-                    "image/blogpost.png",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              // nom de la prestation , date , client et prix
-              Positioned(
-                bottom: 0,
-                left: 0,
-                child: SizedBox(
-                  height: 136,
-                  // l'image prend 200 en largeur , c'est pourquoi nous mettons la largeur total - 200
-                  width: 200,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+  Widget buildUsers(Users users, Article model) => Column(
+        children: [
+          const SizedBox(
+            height: 15,
+          ),
+         InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailBlog(model: model),
+                      ),
+                    );
+                  },
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
                     children: <Widget>[
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: kDefaultPadding,
-                        ),
-                        child: Text(
-                          "Auteur : " + users.name,
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                        child: Text(
-                          "Description : " + getTruncatedContent(users.description,30) + "...",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-
-                      //occupe l'espace disponible
-                      const Spacer(),
+                      //nos background
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: kDefaultPadding * 1.5, //30 padding
-                          vertical: kDefaultPadding / 4,
+                        height: 136,
+                        decoration: BoxDecoration(
+                          boxShadow: const [kDefaultShadow],
+                          borderRadius: BorderRadius.circular(22),
+                          color: kBlackColor,
                         ),
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 57, 130, 173),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(22),
-                            topRight: Radius.circular(22),
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(22),
                           ),
                         ),
-                        child: Text(
-                           users.titre,
-                          style: Theme.of(context).textTheme.button,
+                      ),
+                      // nos images de prestations
+                      Positioned(
+                        top: 10,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: kDefaultPadding),
+                          height: 130,
+                          width: 150,
+                          child: Image.asset(
+                            "image/blogpost.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      // nom de la prestation , date , client et prix
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 136,
+                          // l'image prend 200 en largeur , c'est pourquoi nous mettons la largeur total - 200
+                          width: 250,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: kDefaultPadding,
+                                ),
+                                child: Text(
+                                  getTruncatedContent(users.titre, 15) + "...",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding),
+                                child: Text(
+                                  "Description : " +
+                                      getTruncatedContent(
+                                          users.description, 20) +
+                                      "...",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: kDefaultPadding,
+                                ),
+                                child: Text(
+                                  "Auteur : " +
+                                      getTruncatedContent(users.name, 12) +
+                                      "...",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+
+                              //occupe l'espace disponible
+                              const Spacer(),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal:
+                                      kDefaultPadding * 1.5, //30 padding
+                                  vertical: kDefaultPadding / 4,
+                                ),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 57, 130, 173),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(22),
+                                    topRight: Radius.circular(22),
+                                  ),
+                                ),
+                                child: Text(
+                                  "date",
+                                  style: Theme.of(context).textTheme.button,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-            ],
-          ),
-    ],
-  );
+                )
+                ]
+                );
+              }
+    
 
   //lecture
   Stream<List<Users>> readUsers() => FirebaseFirestore.instance
@@ -202,7 +241,7 @@ class _ListBlogedState extends State<ListBloged> {
 
     await docUser.set(json);
   }
-}
+
 
 class Users {
   String id;
@@ -231,8 +270,8 @@ class Users {
       description: json["description"]);
 }
 
- String getTruncatedContent(String text, int truncatedNumber) {
-    return text.length > truncatedNumber
-        ? text.substring(0, truncatedNumber) 
-        : text;
-  }
+String getTruncatedContent(String text, int truncatedNumber) {
+  return text.length > truncatedNumber
+      ? text.substring(0, truncatedNumber)
+      : text;
+}

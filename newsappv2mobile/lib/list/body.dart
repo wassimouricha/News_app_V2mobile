@@ -1,15 +1,88 @@
 import 'package:newsappv2mobile/list/constant.dart';
 import 'package:newsappv2mobile/list/product_image.dart';
 import 'package:flutter/material.dart';
+import 'modeles.dart';
 
 
-class BodyDetail extends StatelessWidget {
-  const BodyDetail({Key? key}) : super(key: key);
+
+// class DetailBlog extends StatefulWidget {
+//   const DetailBlog({Key? key}) : super(key: key);
+
+//   @override
+//   State<DetailBlog> createState() => _DetailBlogState();
+// }
+
+// class _DetailBlogState extends State<DetailBlog> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         //ici je code mon app bar qui me redirige vers l'accueil
+//         elevation: 0,
+//         backgroundColor: Colors.transparent,
+//         automaticallyImplyLeading: false,
+//         title: Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: 25),
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 Align(
+//                   alignment: Alignment.centerLeft,
+//                   child: IconButton(
+//                     onPressed: () => Navigator.of(context).pushReplacement(
+//                         MaterialPageRoute(
+//                             builder: (context) => const HomeScreen())),
+//                     icon: const Icon(
+//                       Icons.arrow_back_ios,
+//                       color: Color.fromARGB(255, 57, 130, 173),
+//                     ),
+//                   ),
+//                 ),
+//                 Text(
+//                   "WNews v2",
+//                   style: GoogleFonts.poppins(
+//                       fontSize: 15,
+//                       fontWeight: FontWeight.bold,
+//                       color: Colors.white),
+//                 )
+//               ],
+//             )),
+//         titleSpacing: 0,
+//       ),
+//       body: StreamBuilder<List<Users>>(
+//           stream: readUsers(),
+//           builder: (context, snapshot) {
+//             if (snapshot.hasData) {
+//               final users = snapshot.data!;
+
+//               return ListView(
+//                 children: users.map(buildUsers).toList(),
+//               );
+//             } else if (snapshot.hasError) {
+//               // print(snapshot.error);
+//               return const Text(" une erreur est survenue");
+//             } else {
+//               return const Center(
+//                 child: CircularProgressIndicator(),
+//               );
+//             }
+//           }),
+//     );
+//   }
+
+ 
+  
+
+
+class DetailBlog extends StatelessWidget {
+  final Article model;
+
+  const DetailBlog({required this.model, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // ça permet de fournir la hauteur et largeur total
-    Size size = MediaQuery.of(context).size;
+
+      Size size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -27,97 +100,67 @@ class BodyDetail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Center(
-                child: ProductPoster(size: size, image: 'image/kyrie.png',
+                child: ProductPoster(
+                  size: size,
+                  image: 'image/kyrie.png',
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2 ),
-                child: Text("Titre : " " Les nets sont sweepé" , style: Theme.of(context).textTheme.headline6,
+                padding:
+                    const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+                child: Text(
+                  "Titre : " + model.titre,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
-
               ),
-               Padding(
-                padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2 ),
-                child: Text("Catégorie : " " Sport" , style: Theme.of(context).textTheme.headline6,
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+                child: Text(
+                  "Description : " + model.description,
+                  style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
                 ),
-
-              ),
-                Padding(
-                padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2 ),
-                child: Text("Description : " "Les brooklyn nets se sont fait sweepé 4-0 contre les boston celtics durant ce premier tour des playoffs NBA" , style: Theme.of(context).textTheme.headline6,
                 ),
-
               ),
-              const Text("\$45" , style: TextStyle(fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: kSecondaryColor,
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+                child: Text(
+                  "Auteur : " + model.name,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
+              const Text(
+                "date",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: kSecondaryColor,
+                ),
               ),
-              const Padding(padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-              child: Text("date", style: TextStyle(color: kTextColor),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+                child: Text(
+                  "date",
+                  style: TextStyle(color: kTextColor),
+                ),
               ),
+              const SizedBox(
+                height: kDefaultPadding,
               ),
-              const SizedBox(height: kDefaultPadding,),
-             
             ],
           ),
         ),
-        //  Container(
-        //    margin: const EdgeInsets.all( kDefaultPadding),
-             
-        //       decoration:  BoxDecoration(color: Colors.transparent,
-        //       borderRadius: BorderRadius.circular(30),
-        //       ),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: <Widget>[
-        //               // ElevatedButton(
-        //               //       onPressed: () {},
-        //               //       style: ElevatedButton.styleFrom(
-        //               //         shape: const StadiumBorder(),
-        //               //         primary: const Color.fromARGB(255, 21, 161, 8),
-        //               //         padding: const EdgeInsets.all(14),
-        //               //       ),
-        //               //       child: Row(
-        //               //         mainAxisAlignment: MainAxisAlignment.center,
-        //               //         children: [
-        //               //           const SizedBox(width: 10),
-        //               //           Text(
-        //               //             "Accepter",
-        //               //             style: GoogleFonts.poppins(
-        //               //               color: Colors.white,
-        //               //               fontSize: 16,
-        //               //               fontWeight: FontWeight.w500,
-        //               //             ),
-        //               //           )
-        //               //         ],
-        //               //       )),
-        //               //       const SizedBox(width: 10,),
-        //               //        ElevatedButton(
-        //               //       onPressed: () {},
-        //               //       style: ElevatedButton.styleFrom(
-        //               //         shape: const StadiumBorder(),
-        //               //         primary: const Color.fromARGB(255, 217, 0, 0),
-        //               //         padding: const EdgeInsets.all(14),
-        //               //       ),
-        //               //       child: Row(
-        //               //         mainAxisAlignment: MainAxisAlignment.center,
-        //               //         children: [
-        //               //           const SizedBox(width: 10),
-        //               //           Text(
-        //               //             "Refuser",
-        //               //             style: GoogleFonts.poppins(
-        //               //               color: Colors.white,
-        //               //               fontSize: 16,
-        //               //               fontWeight: FontWeight.w500,
-        //               //             ),
-        //               //           )
-        //               //         ],
-        //               //       )),
-        //         ],
-        //       ),
-        //       ),
       ],
     );
+  }
+
+  String getTruncatedContent(String text, int truncatedNumber) {
+    return text.length > truncatedNumber
+        ? text.substring(0, truncatedNumber) 
+        : text;
   }
 }

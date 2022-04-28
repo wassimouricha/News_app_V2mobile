@@ -1,7 +1,6 @@
 // ignore: file_names
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:newsappv2mobile/list/body.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -36,7 +35,7 @@ class DetailsScreen extends StatelessWidget {
             )),
         titleSpacing: 0,
       ),
-      body: const BodyDetail(),
+     
       
     );
   }
