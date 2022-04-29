@@ -235,7 +235,7 @@ class _BizScreenState extends State<BizScreen> {
                         ),
                       ),
                       Text(
-                        ("Publié le ") + getTruncatedContent(model.publishedAt, 20),
+                        ("Publié le ") + getTruncatedContente(model.publishedAt,10),
                         style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -253,6 +253,12 @@ class _BizScreenState extends State<BizScreen> {
   String getTruncatedContent(String text, int truncatedNumber) {
     return text.length > truncatedNumber
         ? text.substring(0, truncatedNumber) + "..."
+        : text;
+  }
+
+    String getTruncatedContente(String text, int truncatedNumber) {
+    return text.length > truncatedNumber
+        ? text.substring(0, truncatedNumber)
         : text;
   }
 }
