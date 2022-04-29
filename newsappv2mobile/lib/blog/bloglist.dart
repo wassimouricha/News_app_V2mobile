@@ -124,7 +124,7 @@ class _ListBlogedState extends State<ListBloged> {
                     ),
                     Positioned(
                       bottom: -10,
-                      left: 130,
+                      left: 150,
                       child: ElevatedButton(
                         child: const Icon(
                           Icons.update,
@@ -260,7 +260,7 @@ class _ListBlogedState extends State<ListBloged> {
                     ),
                     Positioned(
                       bottom: -10,
-                      left: 180,
+                      left: 200,
                       child: ElevatedButton(
                         child: const Icon(
                           Icons.delete,
