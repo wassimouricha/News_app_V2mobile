@@ -17,7 +17,6 @@ class _ListBlogedState extends State<ListBloged> {
   final controllerTitle = TextEditingController();
   final controllerDescription = TextEditingController();
   String action = 'update';
-  
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +119,18 @@ class _ListBlogedState extends State<ListBloged> {
                     ),
                     Positioned(
                       bottom: -10,
-                      left: 150,
+                      left: 130,
                       child: ElevatedButton(
-                        child: const Text("update"),
+                        child: const Icon(
+                          Icons.update,
+                          color: Colors.green,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.transparent,
+                          primary: Colors.white,
+                          elevation: 0.0,
+                          shape: const StadiumBorder(),
+                        ),
                         onPressed: () {
                           showModalBottomSheet(
                               isScrollControlled: true,
@@ -147,7 +155,7 @@ class _ListBlogedState extends State<ListBloged> {
                                         decoration: const InputDecoration(
                                             labelText: 'Auteur'),
                                       ),
-                                        TextField(
+                                      TextField(
                                         controller: controllerTitle,
                                         decoration: const InputDecoration(
                                             labelText: 'Titre'),
@@ -155,36 +163,33 @@ class _ListBlogedState extends State<ListBloged> {
                                       const SizedBox(
                                         height: 20,
                                       ),
-                                      
                                       ElevatedButton(
-                                         
-                                        child: const Text( 'Update'),
+                                        child: const Text('Update'),
                                         onPressed: () async {
                                           final String? name =
-                                              controllerName.text;              
+                                              controllerName.text;
 
-                                                   final String? titre =
-                                              controllerTitle.text;              
+                                          final String? titre =
+                                              controllerTitle.text;
 
-                                            if (action == 'update') {
-                                              // Update l'auteur
-                                              await FirebaseFirestore.instance.collection('users')
-                                                  .doc(users.id)
-                                                  .update({
-                                                "auteur": name,
-                                                "titre": titre,
-                                              });
-                                            }
+                                          if (action == 'update') {
+                                            // Update l'auteur
+                                            await FirebaseFirestore.instance
+                                                .collection('users')
+                                                .doc(users.id)
+                                                .update({
+                                              "auteur": name,
+                                              "titre": titre,
+                                            });
+                                          }
 
-                                            // nettoie le  textfields
-                                            controllerName.text = '';
-                                             controllerTitle.text = '';
-                                         
+                                          // nettoie le  textfields
+                                          controllerName.text = '';
+                                          controllerTitle.text = '';
 
-                                            // cache le widget the bottom sheet
-                                            Navigator.of(context).pop();
-                                          },
-                                     
+                                          // cache le widget the bottom sheet
+                                          Navigator.of(context).pop();
+                                        },
                                       )
                                     ],
                                   ),
@@ -203,6 +208,29 @@ class _ListBlogedState extends State<ListBloged> {
                           // FirebaseFirestore.instance
                           //     .doc(documentSnapshot!.id)
                           //     .update({"name": name});
+                        },
+                      ),
+                    ),
+                    Positioned(
+                      bottom: -10,
+                      left: 180,
+                      child: ElevatedButton(
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.transparent,
+                          primary: Colors.white,
+                          elevation: 0.0,
+                          shape: const StadiumBorder(),
+                        ),
+                        onPressed: () {
+                          final docUser = FirebaseFirestore.instance
+                              .collection("users")
+                              .doc(users.id);
+
+                          docUser.delete();
                         },
                       ),
                     ),
@@ -306,7 +334,6 @@ class _ListBlogedState extends State<ListBloged> {
 
     await docUser.set(json);
   }
-  
 }
 
 class Users {
