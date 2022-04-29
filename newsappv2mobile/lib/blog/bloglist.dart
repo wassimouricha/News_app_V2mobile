@@ -160,6 +160,12 @@ class _ListBlogedState extends State<ListBloged> {
                                         decoration: const InputDecoration(
                                             labelText: 'Titre'),
                                       ),
+                                        TextField(
+                                        controller: controllerDescription,
+                                        decoration: const InputDecoration(
+                                            labelText: 'Description'),
+                                      ),
+                                
                                       const SizedBox(
                                         height: 20,
                                       ),
@@ -172,6 +178,9 @@ class _ListBlogedState extends State<ListBloged> {
                                           final String? titre =
                                               controllerTitle.text;
 
+                                           final String? description =
+                                              controllerDescription.text;
+
                                           if (action == 'update') {
                                             // Update l'auteur
                                             await FirebaseFirestore.instance
@@ -180,6 +189,7 @@ class _ListBlogedState extends State<ListBloged> {
                                                 .update({
                                               "auteur": name,
                                               "titre": titre,
+                                              "description": description,
                                             });
                                           }
 
