@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappv2mobile/constant.dart';
 import 'package:newsappv2mobile/home_screen.dart';
-import 'package:newsappv2mobile/list/body.dart';
-import 'package:newsappv2mobile/list/modeles.dart';
 
 class ListBloged extends StatefulWidget {
   const ListBloged({Key? key}) : super(key: key);
@@ -14,16 +12,18 @@ class ListBloged extends StatefulWidget {
 }
 
 class _ListBlogedState extends State<ListBloged> {
-  List<Article>? newsList;
-    bool isLoading = true;
-
+  final controller = TextEditingController();
+  final controllerName = TextEditingController();
+  final controllerTitle = TextEditingController();
+  final controllerDescription = TextEditingController();
+  String action = 'update';
+  
 
   @override
   Widget build(BuildContext context) {
-    //  final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        //ici je code mon app bar qui me redirige vers l'accueil
+        //ici je code mon appbar qui me redirige vers l'accueil
         elevation: 0,
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
@@ -61,21 +61,8 @@ class _ListBlogedState extends State<ListBloged> {
             if (snapshot.hasData) {
               final users = snapshot.data!;
 
-              return 
-              // isLoading
-              //     ? SizedBox(
-              //         height: size.height / 20,
-              //         width: size.height / 20,
-              //         child: const CircularProgressIndicator(),
-              //       )
-              //     :
-                  Expanded(
-                child: ListView.builder(
-                  itemCount: newsList!.length,
-                  itemBuilder: (context, index) {
-                    return buildUsers(users[index], newsList![index]);
-                  },
-                ),
+              return ListView(
+                children: users.map(buildUsers).toList(),
               );
             } else if (snapshot.hasError) {
               // print(snapshot.error);
@@ -89,137 +76,214 @@ class _ListBlogedState extends State<ListBloged> {
     );
   }
 
-  Widget buildUsers(Users users, Article model) => Column(
+  Widget buildUsers(Users users) => Column(
         children: [
           const SizedBox(
             height: 15,
           ),
-         InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailBlog(model: model),
+          StreamBuilder<Object>(
+              stream: null,
+              builder: (context, snapshot) {
+                return Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    //nos background
+                    Container(
+                      height: 136,
+                      decoration: BoxDecoration(
+                        boxShadow: const [kDefaultShadow],
+                        borderRadius: BorderRadius.circular(22),
+                        color: kBlackColor,
                       ),
-                    );
-                  },
-                  child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: <Widget>[
-                      //nos background
-                      Container(
-                        height: 136,
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
-                          boxShadow: const [kDefaultShadow],
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(22),
-                          color: kBlackColor,
-                        ),
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(22),
-                          ),
                         ),
                       ),
-                      // nos images de prestations
-                      Positioned(
-                        top: 10,
-                        right: 0,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: kDefaultPadding),
-                          height: 130,
-                          width: 150,
-                          child: Image.asset(
-                            "image/blogpost.png",
-                            fit: BoxFit.cover,
-                          ),
+                    ),
+                    // nos images de prestations
+                    Positioned(
+                      top: 10,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: kDefaultPadding),
+                        height: 130,
+                        width: 150,
+                        child: Image.asset(
+                          "image/blogpost.png",
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      // nom de la prestation , date , client et prix
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        child: SizedBox(
-                          height: 136,
-                          // l'image prend 200 en largeur , c'est pourquoi nous mettons la largeur total - 200
-                          width: 250,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: kDefaultPadding,
-                                ),
-                                child: Text(
-                                  getTruncatedContent(users.titre, 15) + "...",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: kDefaultPadding),
-                                child: Text(
-                                  "Description : " +
-                                      getTruncatedContent(
-                                          users.description, 20) +
-                                      "...",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: kDefaultPadding,
-                                ),
-                                child: Text(
-                                  "Auteur : " +
-                                      getTruncatedContent(users.name, 12) +
-                                      "...",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
+                    ),
+                    Positioned(
+                      bottom: -10,
+                      left: 150,
+                      child: ElevatedButton(
+                        child: const Text("update"),
+                        onPressed: () {
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (BuildContext ctx) {
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 20,
+                                      left: 20,
+                                      right: 20,
+                                      // empeche le widget de cacher les  text fields
+                                      bottom:
+                                          MediaQuery.of(ctx).viewInsets.bottom +
+                                              20),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      TextField(
+                                        controller: controllerName,
+                                        decoration: const InputDecoration(
+                                            labelText: 'Auteur'),
+                                      ),
+                                        TextField(
+                                        controller: controllerTitle,
+                                        decoration: const InputDecoration(
+                                            labelText: 'Titre'),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      
+                                      ElevatedButton(
+                                         
+                                        child: const Text( 'Update'),
+                                        onPressed: () async {
+                                          final String? name =
+                                              controllerName.text;              
 
-                              //occupe l'espace disponible
-                              const Spacer(),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal:
-                                      kDefaultPadding * 1.5, //30 padding
-                                  vertical: kDefaultPadding / 4,
-                                ),
-                                decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 57, 130, 173),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(22),
-                                    topRight: Radius.circular(22),
+                                                   final String? titre =
+                                              controllerTitle.text;              
+
+                                            if (action == 'update') {
+                                              // Update l'auteur
+                                              await FirebaseFirestore.instance.collection('users')
+                                                  .doc(users.id)
+                                                  .update({
+                                                "auteur": name,
+                                                "titre": titre,
+                                              });
+                                            }
+
+                                            // nettoie le  textfields
+                                            controllerName.text = '';
+                                             controllerTitle.text = '';
+                                         
+
+                                            // cache le widget the bottom sheet
+                                            Navigator.of(context).pop();
+                                          },
+                                     
+                                      )
+                                    ],
                                   ),
-                                ),
-                                child: Text(
-                                  "date",
-                                  style: Theme.of(context).textTheme.button,
+                                );
+                              });
+                          // final String? name = controllerName.text;
+                          // // final docUser = FirebaseFirestore.instance
+
+                          // //     .collection("users")
+                          // //     .doc(users.id);
+
+                          // // //Update champs de text
+                          // // docUser.update({
+                          // //  "auteur" : "wassim" ,
+                          // // });
+                          // FirebaseFirestore.instance
+                          //     .doc(documentSnapshot!.id)
+                          //     .update({"name": name});
+                        },
+                      ),
+                    ),
+                    // nom de la prestation , date , client et prix
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: SizedBox(
+                        height: 136,
+                        // l'image prend 150 en largeur , c'est pourquoi ici je met  la largeur 250
+                        width: 250,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding,
+                              ),
+                              child: Text(
+                                getTruncatedContent(users.titre, 15) + "...",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 12, fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: kDefaultPadding),
+                              child: Text(
+                                "Description : " +
+                                    getTruncatedContent(users.description, 20) +
+                                    "...",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 12,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding,
+                              ),
+                              child: Text(
+                                "Auteur : " +
+                                    getTruncatedContent(users.name, 12) +
+                                    "...",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+
+                            //occupe l'espace disponible
+                            const Spacer(),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding * 1.5, //30 padding
+                                vertical: kDefaultPadding / 4,
+                              ),
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 57, 130, 173),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(22),
+                                  topRight: Radius.circular(22),
+                                ),
+                              ),
+                              child: Text(
+                                "date",
+                                style: Theme.of(context).textTheme.button,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                )
-                ]
+                    ),
+                  ],
                 );
-              }
-    
+              }),
+        ],
+      );
 
   //lecture
   Stream<List<Users>> readUsers() => FirebaseFirestore.instance
@@ -242,7 +306,8 @@ class _ListBlogedState extends State<ListBloged> {
 
     await docUser.set(json);
   }
-
+  
+}
 
 class Users {
   String id;
