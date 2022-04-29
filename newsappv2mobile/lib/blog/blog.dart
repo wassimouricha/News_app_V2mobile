@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappv2mobile/blog/bloglist.dart';
-
+import 'package:intl/intl.dart'; //package pour faire fonctionner le dateFormat
 
 class ListBlog extends StatefulWidget {
   const ListBlog({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class _ListBlogState extends State<ListBlog> {
   final controllerName = TextEditingController();
   final controllerTitle = TextEditingController();
   final controllerDescription = TextEditingController();
-
+  final controllerDate = TextEditingController();
+  final format = DateFormat("yyyy-MM-dd HH:mm");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +36,7 @@ class _ListBlogState extends State<ListBlog> {
       //         icon: const Icon(Icons.add))
       //   ],
       // ),
-      body: 
-
-      ListView(
+      body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[
           Text(
@@ -87,12 +87,41 @@ class _ListBlogState extends State<ListBlog> {
           const SizedBox(
             height: 24,
           ),
+          DateTimeField(
+            controller: controllerDate,
+            decoration: InputDecoration( labelStyle: TextStyle(
+                color: Colors.grey[400],
+              ),
+              labelText: 'Date',),
+              format: format,
+              onShowPicker: (context, currentValue) async {
+                final date = await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(1900),
+                    initialDate: currentValue ?? DateTime.now(),
+                    lastDate: DateTime(2100));
+                if (date != null) {
+                  final time = await showTimePicker(
+                    context: context,
+                    initialTime:
+                        TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                  );
+                  return DateTimeField.combine(date, time);
+                } else {
+                  return currentValue;
+                }
+              }),
+
+          const SizedBox(
+            height: 24,
+          ),
           ElevatedButton(
               onPressed: () {
                 final users = Users(
                     name: controllerName.text,
                     titre: controllerTitle.text,
-                    description: controllerDescription.text);
+                    description: controllerDescription.text,
+                    date: DateTime.parse(controllerDate.text));
 
                 createUser(users);
 
@@ -153,12 +182,14 @@ class Users {
   final String name;
   final String titre;
   final String description;
+  final DateTime date;
 
   Users({
     this.id = "",
     required this.name,
     required this.titre,
     required this.description,
+    required this.date,
   });
 
   Map<String, dynamic> toJson() => {
@@ -166,11 +197,14 @@ class Users {
         "auteur": name,
         "titre": titre,
         "description": description,
+        "date": date,
       };
 
   static Users fromJson(Map<String, dynamic> json) => Users(
       id: json["id"],
       name: json["auteur"],
       titre: json["titre"],
-      description: json["description"]);
+      description: json["description"],
+      date: (json["date"] as Timestamp).toDate(),
+      );
 }

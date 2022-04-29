@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappv2mobile/constant.dart';
 import 'package:newsappv2mobile/home_screen.dart';
+import 'package:intl/intl.dart'; //package pour faire fonctionner le dateFormat
+
 
 class ListBloged extends StatefulWidget {
   const ListBloged({Key? key}) : super(key: key);
@@ -16,6 +19,8 @@ class _ListBlogedState extends State<ListBloged> {
   final controllerName = TextEditingController();
   final controllerTitle = TextEditingController();
   final controllerDescription = TextEditingController();
+  final controllerDate = TextEditingController();
+   final format = DateFormat("yyyy-MM-dd HH:mm");
   String action = 'update';
 
   @override
@@ -160,13 +165,40 @@ class _ListBlogedState extends State<ListBloged> {
                                         decoration: const InputDecoration(
                                             labelText: 'Titre'),
                                       ),
-                                        TextField(
+                                      TextField(
                                         controller: controllerDescription,
                                         decoration: const InputDecoration(
                                             labelText: 'Description'),
                                       ),
-                                
+
                                       const SizedBox(
+                                        height: 20,
+                                      ),
+                                       DateTimeField(
+            controller: controllerDate,
+            decoration: InputDecoration( labelStyle: TextStyle(
+                color: Colors.grey[400],
+              ),
+              labelText: 'Date',),
+              format: format,
+              onShowPicker: (context, currentValue) async {
+                final date = await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(1900),
+                    initialDate: currentValue ?? DateTime.now(),
+                    lastDate: DateTime(2100));
+                if (date != null) {
+                  final time = await showTimePicker(
+                    context: context,
+                    initialTime:
+                        TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                  );
+                  return DateTimeField.combine(date, time);
+                } else {
+                  return currentValue;
+                }
+              }),
+              const SizedBox(
                                         height: 20,
                                       ),
                                       ElevatedButton(
@@ -178,8 +210,11 @@ class _ListBlogedState extends State<ListBloged> {
                                           final String? titre =
                                               controllerTitle.text;
 
-                                           final String? description =
+                                          final String? description =
                                               controllerDescription.text;
+
+                                               final DateTime? date =
+                                              DateTime.parse(controllerDate.text);
 
                                           if (action == 'update') {
                                             // Update l'auteur
@@ -190,12 +225,14 @@ class _ListBlogedState extends State<ListBloged> {
                                               "auteur": name,
                                               "titre": titre,
                                               "description": description,
+                                              "date" : date,
                                             });
                                           }
 
                                           // nettoie le  textfields
                                           controllerName.text = '';
                                           controllerTitle.text = '';
+                                          controllerDescription.text = '';
 
                                           // cache le widget the bottom sheet
                                           Navigator.of(context).pop();
@@ -309,7 +346,7 @@ class _ListBlogedState extends State<ListBloged> {
                                 ),
                               ),
                               child: Text(
-                                "date",
+                             getTruncatedContent(users.date.toIso8601String(), 10)   ,
                                 style: Theme.of(context).textTheme.button,
                               ),
                             ),
@@ -351,26 +388,31 @@ class Users {
   final String name;
   final String titre;
   final String description;
+  final DateTime date;
 
   Users({
     this.id = "",
     required this.name,
     required this.titre,
     required this.description,
+    required this.date,
   });
 
-  Map<String, dynamic> toJson() => {
+  Map<String,dynamic> toJson() => {
         "id": id,
         "auteur": name,
         "titre": titre,
         "description": description,
+        "date": date,
       };
 
   static Users fromJson(Map<String, dynamic> json) => Users(
       id: json["id"],
       name: json["auteur"],
       titre: json["titre"],
-      description: json["description"]);
+      description: json["description"],
+      date: (json["date"] as Timestamp).toDate(),
+      );
 }
 
 String getTruncatedContent(String text, int truncatedNumber) {
