@@ -270,7 +270,7 @@ builder: (context,snapshot){
     });
   }
 
-  // fonction pour uploader le fichier
+  // fonction pour uploader le fichier (final = une variable)
   Future uploadFile() async {
     final path = 'files/${pickedFile!.name}'; //liens du dossier et nom du fichier upload
     final file = File(pickedFile!.path!);
@@ -289,7 +289,8 @@ builder: (context,snapshot){
 
     setState(() {
       uploadTask = null;
-    });
+    }
+    );
   }
 
   
