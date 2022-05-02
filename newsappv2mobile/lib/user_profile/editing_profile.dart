@@ -22,6 +22,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   PlatformFile? pickedFile;
   UploadTask? uploadTask;
   Usered user = UserPreferences.myUser;
+  String? imageurl;
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +118,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 24,
               ),
+                  Image.network(
+                    imageurl!,     
+                    height: 200,
+                    width: 200,),
+              
               delayedAnimation(
                 delay: 2500,
                 child: TextFieldWidget(
@@ -207,10 +213,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 24,
               ),
-                buildProgress(),
+              buildProgress(),
               const SizedBox(
                 height: 24,
               ),
+            
+               if(imageurl != null)  
+            
+               
+             
+         
+          
               delayedAnimation(
                 delay: 2500,
                 child: TextFieldWidget(
@@ -222,43 +235,39 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ]),
       );
-
-     
     }
   }
 
- Widget buildProgress() => StreamBuilder<TaskSnapshot>(
+  Widget buildProgress() => StreamBuilder<TaskSnapshot>(
+      stream: uploadTask?.snapshotEvents,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final data = snapshot.data!;
+          double progress = data.bytesTransferred / data.totalBytes;
 
-stream: uploadTask?.snapshotEvents,
-builder: (context,snapshot){
-  if (snapshot.hasData){
- final data = snapshot.data!;
- double progress = data.bytesTransferred / data.totalBytes;
-
- return SizedBox(
-   height: 50,
-   child: Stack(
-
-     fit: StackFit.expand,
-     children: [
-       LinearProgressIndicator(
-         value: progress,
-         backgroundColor: Colors.grey,
-         color: Colors.green,
-       ),
-       Center(
-         child: Text("${(100* progress).roundToDouble()} %",
-         style: const TextStyle(color: Colors.white),
-         ),
-       )
-     ],
-   ),
- );
-  } else {
-    return const SizedBox(height: 50);
-  }
-});
-
+          return SizedBox(
+            height: 50,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                LinearProgressIndicator(
+                  value: progress,
+                  backgroundColor: Colors.grey,
+                  color: Colors.green,
+                ),
+                Center(
+                  child: Text(
+                    "${(100 * progress).roundToDouble()} %",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            ),
+          );
+        } else {
+          return const SizedBox(height: 50);
+        }
+      });
 
   //fonction pour selectionner le fichier
   Future selectFile() async {
@@ -272,26 +281,28 @@ builder: (context,snapshot){
 
   // fonction pour uploader le fichier (final = une variable)
   Future uploadFile() async {
-    final path = 'files/${pickedFile!.name}'; //liens du dossier et nom du fichier upload
+    final path =
+        'files/${pickedFile!.name}'; //liens du dossier et nom du fichier upload
     final file = File(pickedFile!.path!);
 
-    final ref = FirebaseStorage.instanceFor(bucket: "gs://newsappwassim-d200c.appspot.com"); //liens du sotrage
+    final ref = FirebaseStorage.instanceFor(
+        bucket: "gs://newsappwassim-d200c.appspot.com"); //liens du sotrage
     setState(() {
-          uploadTask = ref.ref(path).putFile(file);
+      uploadTask = ref.ref(path).putFile(file);
     });
 
-
-    final snapshot = await uploadTask!.whenComplete(() {});
-
-    final urlDownload = await snapshot.ref.getDownloadURL();
-    // ignore: avoid_print
-    print("liens de téléchargement : $urlDownload");
+    final snapshot = await uploadTask!.whenComplete(() async {
+      final urlDownload = await   ref.ref(path).getDownloadURL();
+     
+      // ignore: avoid_print
+      print("liens de téléchargement : $urlDownload");
+      setState(() {
+        imageurl = urlDownload;
+      });
+    });
 
     setState(() {
       uploadTask = null;
-    }
-    );
+    });
   }
-
-  
 }

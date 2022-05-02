@@ -46,6 +46,7 @@ class _UserPageV2State extends State<UserPageV2> {
                         const SizedBox(
                           height: 24,
                         ),
+                        
                         Column(children: [
                           Text(
                             user.email,
