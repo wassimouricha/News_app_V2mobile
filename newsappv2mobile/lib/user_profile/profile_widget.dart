@@ -20,7 +20,8 @@ class ProfileWidget extends StatelessWidget {
         child: Stack(
       children: [
         GestureDetector(child: buildImage(),
-         onTap:  () => Navigator.of(context).push( MaterialPageRoute(builder: (context) => const EditProfilePage()),)
+         onTap:  () 
+         => Navigator.of(context).push( MaterialPageRoute(builder: (context) => const EditProfilePage()),)
         ),
         Positioned(
             bottom: 0,

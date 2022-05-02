@@ -100,6 +100,8 @@ class _ListBlogState extends State<ListBlog> {
                     firstDate: DateTime(1900),
                     initialDate: currentValue ?? DateTime.now(),
                     lastDate: DateTime(2100));
+
+
                 if (date != null) {
                   final time = await showTimePicker(
                     context: context,
@@ -111,7 +113,10 @@ class _ListBlogState extends State<ListBlog> {
                   return currentValue;
                 }
               }),
-
+                   const SizedBox(
+            height: 24,
+          ),
+          
           const SizedBox(
             height: 24,
           ),
