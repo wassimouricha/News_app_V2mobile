@@ -72,7 +72,7 @@ class _TechScreenState extends State<TechScreen> {
                     onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-                const Text("Wassim News App v2",
+                const Text("NewsApp v2",
                     style: TextStyle(fontSize: 15, color: Colors.black)),
               ],
             )),

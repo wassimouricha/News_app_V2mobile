@@ -46,7 +46,7 @@ class Readingscience extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "WNews v2",
+                        "NewsApp v2",
                         style: GoogleFonts.poppins(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,

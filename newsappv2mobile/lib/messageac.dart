@@ -10,10 +10,12 @@ class WelcomeWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          "Bonjour et bienvenue sur NewsApp !",
-          style: TextStyle(fontSize: 20),
+         const Center(
+           child: Text(
+            "Bonjour et bienvenue sur NewsApp !",
+            style:  TextStyle(fontSize: 20),
         ),
+         ),
         Text("Informez vous en cliquant sur les articles dans la liste",
             style: GoogleFonts.poppins(
               fontSize: 10,

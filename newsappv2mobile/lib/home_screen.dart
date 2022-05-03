@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-                Text("Wassim News App v2",
+                Text("NewsApp v2",
                     style:
                         GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
               ],

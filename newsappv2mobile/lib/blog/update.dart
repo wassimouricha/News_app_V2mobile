@@ -19,20 +19,7 @@ class _ListBlogState extends State<ListBlog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: TextField(
-      //     controller: controller,
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //         onPressed: () {
-      //           final name = controller.text;
-
-      //           createUser(name: name);
-      //         },
-      //         icon: const Icon(Icons.add))
-      //   ],
-      // ),
+ 
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[

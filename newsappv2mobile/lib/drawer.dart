@@ -147,7 +147,7 @@ class NavigationDraweer extends StatelessWidget {
 
 //le widget du menu du drawer/sidebar
 Widget buildMenuItems(BuildContext context) => Wrap(
-      runSpacing: 16, //espace vertical
+      runSpacing: 8, //espace vertical
       children: [
         ListTile(
           leading: const Icon(Icons.home_outlined),
@@ -194,6 +194,10 @@ Widget buildMenuItems(BuildContext context) => Wrap(
           ),
           onTap: () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const BlogHome())),
+        ),
+        Center(
+          child: SizedBox( height: 70, width: 70, child: Image.asset("image/playstore.png", fit: BoxFit.cover,),
+          ),
         ),
         InkWell(
           borderRadius: BorderRadius.circular(500),
