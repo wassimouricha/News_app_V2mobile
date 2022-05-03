@@ -14,11 +14,11 @@ class WelcomeWidget extends StatelessWidget {
           "Bonjour et bienvenue sur NewsApp !",
           style: TextStyle(fontSize: 20),
         ),
-        Text(
-          "Informez vous en cliquant sur les articles dans la liste",
-          style:  GoogleFonts.poppins(fontSize: 10,
-          color:  const Color.fromARGB(255, 57, 130, 173),)
-        )
+        Text("Informez vous en cliquant sur les articles dans la liste",
+            style: GoogleFonts.poppins(
+              fontSize: 10,
+              color: const Color.fromARGB(255, 57, 130, 173),
+            ))
       ],
     );
   }

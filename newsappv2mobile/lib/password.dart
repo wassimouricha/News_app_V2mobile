@@ -104,7 +104,7 @@ class _connexionPageState extends State<connexionPage> {
                 ),
               ]),
             )));
-        
+
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: emailController.text.trim(),
@@ -125,8 +125,6 @@ class _connexionPageState extends State<connexionPage> {
                   ),
                 ]),
               )));
-
-    
     }
   }
 

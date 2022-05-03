@@ -253,7 +253,8 @@ class _connexionPageState extends State<connexionPage> {
                                           .signIn()
                                           .then((value) {
                                         print(value);
-                                        print(FirebaseAuth.instance.currentUser);
+                                        print(
+                                            FirebaseAuth.instance.currentUser);
                                         setState(() {
                                           userObj = value!;
                                         });

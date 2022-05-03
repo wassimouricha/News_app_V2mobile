@@ -88,11 +88,13 @@ class _ListBlogState extends State<ListBlog> {
             height: 24,
           ),
           DateTimeField(
-            controller: controllerDate,
-            decoration: InputDecoration( labelStyle: TextStyle(
-                color: Colors.grey[400],
+              controller: controllerDate,
+              decoration: InputDecoration(
+                labelStyle: TextStyle(
+                  color: Colors.grey[400],
+                ),
+                labelText: 'Date',
               ),
-              labelText: 'Date',),
               format: format,
               onShowPicker: (context, currentValue) async {
                 final date = await showDatePicker(
@@ -100,7 +102,6 @@ class _ListBlogState extends State<ListBlog> {
                     firstDate: DateTime(1900),
                     initialDate: currentValue ?? DateTime.now(),
                     lastDate: DateTime(2100));
-
 
                 if (date != null) {
                   final time = await showTimePicker(
@@ -113,10 +114,9 @@ class _ListBlogState extends State<ListBlog> {
                   return currentValue;
                 }
               }),
-                   const SizedBox(
+          const SizedBox(
             height: 24,
           ),
-          
           const SizedBox(
             height: 24,
           ),
@@ -206,10 +206,10 @@ class Users {
       };
 
   static Users fromJson(Map<String, dynamic> json) => Users(
-      id: json["id"],
-      name: json["auteur"],
-      titre: json["titre"],
-      description: json["description"],
-      date: (json["date"] as Timestamp).toDate(),
+        id: json["id"],
+        name: json["auteur"],
+        titre: json["titre"],
+        description: json["description"],
+        date: (json["date"] as Timestamp).toDate(),
       );
 }

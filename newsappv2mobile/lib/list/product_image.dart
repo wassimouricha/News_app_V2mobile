@@ -1,11 +1,11 @@
 import 'package:newsappv2mobile/list/constant.dart';
 import 'package:flutter/material.dart';
 
-
 class ProductPoster extends StatelessWidget {
   const ProductPoster({
     Key? key,
-    required this.size, required this.image,
+    required this.size,
+    required this.image,
   }) : super(key: key);
 
   final Size size;
@@ -30,7 +30,7 @@ class ProductPoster extends StatelessWidget {
             ),
           ),
           Image.asset(
-           image,
+            image,
             height: size.width * 0.75,
             width: size.width * 0.75,
             fit: BoxFit.cover,

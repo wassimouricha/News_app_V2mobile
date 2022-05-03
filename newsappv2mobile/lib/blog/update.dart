@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappv2mobile/blog/bloglist.dart';
 
-
 class ListBlog extends StatefulWidget {
   const ListBlog({Key? key}) : super(key: key);
 
@@ -34,9 +33,7 @@ class _ListBlogState extends State<ListBlog> {
       //         icon: const Icon(Icons.add))
       //   ],
       // ),
-      body: 
-
-      ListView(
+      body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[
           Text(

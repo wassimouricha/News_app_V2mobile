@@ -7,7 +7,6 @@ import 'package:newsappv2mobile/user_profile/user_pref.dart';
 import 'profile_widget.dart';
 import 'numbers_widget.dart';
 
-
 class UserPageV2 extends StatefulWidget {
   const UserPageV2({Key? key}) : super(key: key);
 
@@ -41,12 +40,10 @@ class _UserPageV2State extends State<UserPageV2> {
                       children: [
                         ProfileWidget(
                           imagePath: usered.imagePath,
-                      
                         ),
                         const SizedBox(
                           height: 24,
                         ),
-                        
                         Column(children: [
                           Text(
                             user.email,
@@ -113,7 +110,6 @@ class _UserPageV2State extends State<UserPageV2> {
                       children: [
                         ProfileWidget(
                           imagePath: usered.imagePath,
-                       
                         ),
                         const SizedBox(
                           height: 24,

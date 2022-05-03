@@ -4,24 +4,17 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:newsappv2mobile/splash_screen.dart';
 
-
-
-
 Future main() async {
-
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyCOMPb2RbsTegqR4zKfSfgGB28iYv_0dRo", // Your apiKey
-      appId: "1:517870258699:android:6ba0fbddbc4b8497e8950e", // Your appId
-      messagingSenderId: "517870258699", // Your messagingSenderId
-      projectId: "newsappwassim-d200c", // Your projectId
-       ) 
-     
-  );
- 
+      options: const FirebaseOptions(
+    apiKey: "AIzaSyCOMPb2RbsTegqR4zKfSfgGB28iYv_0dRo", // Your apiKey
+    appId: "1:517870258699:android:6ba0fbddbc4b8497e8950e", // Your appId
+    messagingSenderId: "517870258699", // Your messagingSenderId
+    projectId: "newsappwassim-d200c", // Your projectId
+  ));
+
   runApp(const MyApp());
 }
 
@@ -41,8 +34,6 @@ class _MyAppState extends State<MyApp> {
       title: 'Wassim News App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        
-
         primarySwatch: Colors.blue,
         dividerColor: Colors.black,
       ),

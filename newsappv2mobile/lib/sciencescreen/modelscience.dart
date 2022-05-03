@@ -1,13 +1,13 @@
 class ScienceApiModel {
-  String title, imageUrl, content, description,publishedAt,author,url;
+  String title, imageUrl, content, description, publishedAt, author, url;
 
   ScienceApiModel(
       {required this.title,
       required this.url,
       required this.description,
       required this.content,
-       required this.publishedAt,
-        required this.author,
+      required this.publishedAt,
+      required this.author,
       required this.imageUrl});
 
   factory ScienceApiModel.fromJson(Map<String, dynamic> jsonData) {

@@ -3,8 +3,6 @@ import 'package:newsappv2mobile/list/product_image.dart';
 import 'package:flutter/material.dart';
 import 'modeles.dart';
 
-
-
 // class DetailBlog extends StatefulWidget {
 //   const DetailBlog({Key? key}) : super(key: key);
 
@@ -70,10 +68,6 @@ import 'modeles.dart';
 //     );
 //   }
 
- 
-  
-
-
 class DetailBlog extends StatelessWidget {
   final Article model;
 
@@ -81,8 +75,7 @@ class DetailBlog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-      Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -119,10 +112,10 @@ class DetailBlog extends StatelessWidget {
                 child: Text(
                   "Description : " + model.description,
                   style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               Padding(
@@ -160,7 +153,7 @@ class DetailBlog extends StatelessWidget {
 
   String getTruncatedContent(String text, int truncatedNumber) {
     return text.length > truncatedNumber
-        ? text.substring(0, truncatedNumber) 
+        ? text.substring(0, truncatedNumber)
         : text;
   }
 }

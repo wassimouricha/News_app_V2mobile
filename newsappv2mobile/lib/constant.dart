@@ -10,12 +10,7 @@ const Color cafeDark = Color.fromARGB(255, 0, 0, 0);
 const kDefaultPadding = 20.0;
 
 const kDefaultShadow = BoxShadow(
-
-
-   
-        offset: Offset(4, 4),
-        blurRadius: 27,
-        color: Colors.black12,  //Couleur noir avec 12% d'opacité
-
-
+  offset: Offset(4, 4),
+  blurRadius: 27,
+  color: Colors.black12, //Couleur noir avec 12% d'opacité
 );

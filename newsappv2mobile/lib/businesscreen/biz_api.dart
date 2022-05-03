@@ -24,7 +24,6 @@ Future<List<BizApiModel>> getNews() async {
 
     return bizList;
   } else {
-    
     print("erreur");
     return [];
   }

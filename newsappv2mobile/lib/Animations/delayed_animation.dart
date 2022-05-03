@@ -52,9 +52,10 @@ class _delayedAnimationState extends State<delayedAnimation>
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _controller,
-      child: SlideTransition(position: _animOffset,
-      child: widget.child), //on aura donc deux animation , un slide et un fade
-      
-      );
+      child: SlideTransition(
+          position: _animOffset,
+          child:
+              widget.child), //on aura donc deux animation , un slide et un fade
+    );
   }
 }

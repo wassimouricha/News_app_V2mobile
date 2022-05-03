@@ -10,7 +10,6 @@ import 'package:newsappv2mobile/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:newsappv2mobile/signup.dart';
 
-
 //mon drawer = ma sidebar
 
 class NavigationDraweer extends StatelessWidget {
@@ -18,7 +17,7 @@ class NavigationDraweer extends StatelessWidget {
   get user => FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
       body: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
@@ -42,7 +41,7 @@ class NavigationDraweer extends StatelessWidget {
                           Navigator.pop(context);
                           //pour rediriger vers la page
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>  const UserPageV2(),
+                            builder: (context) => const UserPageV2(),
                           ));
                         },
                         child: Container(
@@ -55,8 +54,7 @@ class NavigationDraweer extends StatelessWidget {
                               const CircleAvatar(
                                 radius: 52,
                                 backgroundColor: Colors.white,
-                                backgroundImage: AssetImage(
-                                    'image/user.png'),
+                                backgroundImage: AssetImage('image/user.png'),
                               ),
                               const SizedBox(
                                 height: 12,
@@ -70,7 +68,7 @@ class NavigationDraweer extends StatelessWidget {
                                 height: 12,
                               ),
                               Text(
-                                 user.email,
+                                user.email,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15, color: Colors.white),
                               ),
@@ -111,11 +109,10 @@ class NavigationDraweer extends StatelessWidget {
                           child: Column(
                             children: [
                               const CircleAvatar(
-                                radius: 52,
-                                backgroundColor: Colors.white,
-                                backgroundImage: AssetImage(
-                                    'image/user.png')
-                              ),
+                                  radius: 52,
+                                  backgroundColor: Colors.white,
+                                  backgroundImage:
+                                      AssetImage('image/user.png')),
                               const SizedBox(
                                 height: 12,
                               ),
@@ -168,7 +165,7 @@ Widget buildMenuItems(BuildContext context) => Wrap(
             'Inscription',
             style: GoogleFonts.poppins(fontSize: 15, color: Colors.black),
           ),
-          onTap: () =>  Navigator.of(context).pushReplacement(
+          onTap: () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const Signuped())),
         ),
         ListTile(
@@ -180,7 +177,7 @@ Widget buildMenuItems(BuildContext context) => Wrap(
           onTap: () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const loginaid())),
         ),
-          ListTile(
+        ListTile(
           leading: const Icon(Icons.post_add),
           title: Text(
             'Blog',
@@ -189,7 +186,7 @@ Widget buildMenuItems(BuildContext context) => Wrap(
           onTap: () => Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const ListBloged())),
         ),
-           ListTile(
+        ListTile(
           leading: const Icon(Icons.post_add),
           title: Text(
             'Ajouter un post au blog',

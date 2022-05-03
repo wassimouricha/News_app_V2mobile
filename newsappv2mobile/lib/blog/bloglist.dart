@@ -6,7 +6,6 @@ import 'package:newsappv2mobile/constant.dart';
 import 'package:newsappv2mobile/home_screen.dart';
 import 'package:intl/intl.dart'; //package pour faire fonctionner le dateFormat
 
-
 class ListBloged extends StatefulWidget {
   const ListBloged({Key? key}) : super(key: key);
 
@@ -20,7 +19,7 @@ class _ListBlogedState extends State<ListBloged> {
   final controllerTitle = TextEditingController();
   final controllerDescription = TextEditingController();
   final controllerDate = TextEditingController();
-   final format = DateFormat("yyyy-MM-dd HH:mm");
+  final format = DateFormat("yyyy-MM-dd HH:mm");
   String action = 'update';
 
   @override
@@ -170,35 +169,41 @@ class _ListBlogedState extends State<ListBloged> {
                                         decoration: const InputDecoration(
                                             labelText: 'Description'),
                                       ),
-
                                       const SizedBox(
                                         height: 20,
                                       ),
-                                       DateTimeField(
-            controller: controllerDate,
-            decoration: InputDecoration( labelStyle: TextStyle(
-                color: Colors.grey[400],
-              ),
-              labelText: 'Date',),
-              format: format,
-              onShowPicker: (context, currentValue) async {
-                final date = await showDatePicker(
-                    context: context,
-                    firstDate: DateTime(1900),
-                    initialDate: currentValue ?? DateTime.now(),
-                    lastDate: DateTime(2100));
-                if (date != null) {
-                  final time = await showTimePicker(
-                    context: context,
-                    initialTime:
-                        TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-                  );
-                  return DateTimeField.combine(date, time);
-                } else {
-                  return currentValue;
-                }
-              }),
-              const SizedBox(
+                                      DateTimeField(
+                                          controller: controllerDate,
+                                          decoration: InputDecoration(
+                                            labelStyle: TextStyle(
+                                              color: Colors.grey[400],
+                                            ),
+                                            labelText: 'Date',
+                                          ),
+                                          format: format,
+                                          onShowPicker:
+                                              (context, currentValue) async {
+                                            final date = await showDatePicker(
+                                                context: context,
+                                                firstDate: DateTime(1900),
+                                                initialDate: currentValue ??
+                                                    DateTime.now(),
+                                                lastDate: DateTime(2100));
+                                            if (date != null) {
+                                              final time = await showTimePicker(
+                                                context: context,
+                                                initialTime:
+                                                    TimeOfDay.fromDateTime(
+                                                        currentValue ??
+                                                            DateTime.now()),
+                                              );
+                                              return DateTimeField.combine(
+                                                  date, time);
+                                            } else {
+                                              return currentValue;
+                                            }
+                                          }),
+                                      const SizedBox(
                                         height: 20,
                                       ),
                                       ElevatedButton(
@@ -213,8 +218,8 @@ class _ListBlogedState extends State<ListBloged> {
                                           final String? description =
                                               controllerDescription.text;
 
-                                               final DateTime? date =
-                                              DateTime.parse(controllerDate.text);
+                                          final DateTime? date = DateTime.parse(
+                                              controllerDate.text);
 
                                           if (action == 'update') {
                                             // Update l'auteur
@@ -225,7 +230,7 @@ class _ListBlogedState extends State<ListBloged> {
                                               "auteur": name,
                                               "titre": titre,
                                               "description": description,
-                                              "date" : date,
+                                              "date": date,
                                             });
                                           }
 
@@ -346,7 +351,8 @@ class _ListBlogedState extends State<ListBloged> {
                                 ),
                               ),
                               child: Text(
-                             getTruncatedContent(users.date.toIso8601String(), 10)   ,
+                                getTruncatedContent(
+                                    users.date.toIso8601String(), 10),
                                 style: Theme.of(context).textTheme.button,
                               ),
                             ),
@@ -398,7 +404,7 @@ class Users {
     required this.date,
   });
 
-  Map<String,dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "auteur": name,
         "titre": titre,
@@ -407,11 +413,11 @@ class Users {
       };
 
   static Users fromJson(Map<String, dynamic> json) => Users(
-      id: json["id"],
-      name: json["auteur"],
-      titre: json["titre"],
-      description: json["description"],
-      date: (json["date"] as Timestamp).toDate(),
+        id: json["id"],
+        name: json["auteur"],
+        titre: json["titre"],
+        description: json["description"],
+        date: (json["date"] as Timestamp).toDate(),
       );
 }
 

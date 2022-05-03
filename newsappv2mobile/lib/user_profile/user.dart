@@ -7,7 +7,5 @@ class Usered {
     required this.imagePath,
     required this.about,
     required this.isDarkMode,
-});
-
+  });
 }
-

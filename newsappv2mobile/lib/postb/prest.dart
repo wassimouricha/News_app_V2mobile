@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsappv2mobile/home_screen.dart';
 import 'package:newsappv2mobile/user_profile/user_pref.dart';
 import 'package:newsappv2mobile/list/list.dart';
-
 
 class Prestation extends StatefulWidget {
   const Prestation({Key? key}) : super(key: key);
@@ -31,67 +29,69 @@ class _PrestationState extends State<Prestation> {
               } else if (snapshot.hasData) {
                 return Scaffold(
                   appBar: AppBar(
-        //ici je code mon app bar qui me redirige vers mon drawer
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Builder(
-                  builder: (context) => IconButton(
-                      onPressed: () => Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomeScreen())),
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color:  Color.fromARGB(255, 57, 130, 173),
-                        
-                      ),
-                    ),
-                ),
-                Text("Wassim News App v2",
-                    style: GoogleFonts.poppins(
-                        fontSize: 15, color: Colors.black)),
-              ],
-            )),
-        titleSpacing: 0,
-      ),
+                    //ici je code mon app bar qui me redirige vers mon drawer
+                    backgroundColor: Colors.white,
+                    automaticallyImplyLeading: false,
+                    title: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Builder(
+                              builder: (context) => IconButton(
+                                onPressed: () => Navigator.of(context)
+                                    .pushReplacement(MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen())),
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                  color: Color.fromARGB(255, 57, 130, 173),
+                                ),
+                              ),
+                            ),
+                            Text("Wassim News App v2",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 15, color: Colors.black)),
+                          ],
+                        )),
+                    titleSpacing: 0,
+                  ),
                   backgroundColor: Colors.white,
                   body: const ListPresta(),
                 );
               } else {
                 return Scaffold(
                   appBar: AppBar(
-        //ici je code mon app bar qui me redirige vers mon drawer
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Builder(
-                  builder: (context) => IconButton(
-                     icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color:  Color.fromARGB(255, 57, 130, 173),),
-                        onPressed: () => Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomeScreen())),
+                    //ici je code mon app bar qui me redirige vers mon drawer
+                    backgroundColor: Colors.white,
+                    automaticallyImplyLeading: false,
+                    title: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Builder(
+                              builder: (context) => IconButton(
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                  color: Color.fromARGB(255, 57, 130, 173),
+                                ),
+                                onPressed: () => Navigator.of(context)
+                                    .pushReplacement(MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen())),
+                              ),
+                            ),
+                            Text("Wassim News App v2",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 15, color: Colors.black)),
+                          ],
+                        )),
+                    titleSpacing: 0,
                   ),
-                ),
-                Text("Wassim News App v2",
-                    style: GoogleFonts.poppins(
-                        fontSize: 15, color: Colors.black)),
-              ],
-            )),
-        titleSpacing: 0,
-      ),
-                  body:const ListPresta(),
+                  body: const ListPresta(),
                 );
               }
             }),
       );
-
-
 }

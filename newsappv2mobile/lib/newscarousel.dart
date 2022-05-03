@@ -12,13 +12,13 @@ class NewsCarousel extends StatefulWidget {
 class _NewsCarouselState extends State<NewsCarousel> {
   final StaticValues staticValues = StaticValues();
 
-   final CarouselController _buttonCarouselController = CarouselController();
+  final CarouselController _buttonCarouselController = CarouselController();
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return CarouselSlider(
-       carouselController: _buttonCarouselController,
+      carouselController: _buttonCarouselController,
       options: CarouselOptions(
         height: 150.0,
         autoPlay: true,
@@ -36,33 +36,33 @@ class _NewsCarouselState extends State<NewsCarousel> {
                     child: Image.asset(
                       newsItem.image,
                       fit: BoxFit.cover,
-                     
                     ),
                   ),
                   Container(
                     width: size.width,
-                   
                     height: 150,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topCenter, 
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Color(0xCC000000),
-                          Color.fromARGB(73, 0, 0, 0),
-                          Color(0xCC000000),
-                        ]
-                      )
-                    ),),
-                    Align(alignment: Alignment.bottomCenter,
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color(0xCC000000),
+                              Color.fromARGB(73, 0, 0, 0),
+                              Color(0xCC000000),
+                            ])),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
                     child: Container(
                       margin: const EdgeInsets.all(20),
-                      child: Text(newsItem.title, 
-                      style: const TextStyle(fontSize: 15,color: Colors.white),
-                      
+                      child: Text(
+                        newsItem.title,
+                        style:
+                            const TextStyle(fontSize: 15, color: Colors.white),
                       ),
-                      ),),
+                    ),
+                  ),
                 ],
               ),
             );

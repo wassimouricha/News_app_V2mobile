@@ -16,7 +16,6 @@ import 'package:newsappv2mobile/messageac.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -54,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-   
 
     return Scaffold(
       backgroundColor: getColors[1],
@@ -74,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Text("Wassim News App v2",
-                    style: GoogleFonts.poppins(
-                        fontSize: 15, color: Colors.black)),
+                    style:
+                        GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
               ],
             )),
         titleSpacing: 0,
@@ -103,7 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const SportScreen())),
+                        MaterialPageRoute(
+                            builder: (context) => const SportScreen())),
                   ),
                   ListTile(
                     title: Text(
@@ -113,7 +112,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const SanteScreen())),
+                        MaterialPageRoute(
+                            builder: (context) => const SanteScreen())),
                   ),
                   ListTile(
                     title: Text(
@@ -134,7 +134,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const TechScreen())),
+                        MaterialPageRoute(
+                            builder: (context) => const TechScreen())),
                   ),
                   ListTile(
                     title: Text(
@@ -144,7 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const BizScreen())),
+                        MaterialPageRoute(
+                            builder: (context) => const BizScreen())),
                   ),
                   ListTile(
                     title: Text(
@@ -154,7 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () => Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const EntScreen())),
+                        MaterialPageRoute(
+                            builder: (context) => const EntScreen())),
                   ),
                 ],
               ),
@@ -209,16 +212,16 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 //le container de mon image
-                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                   margin: const EdgeInsets.symmetric(vertical: 5),
-                   color: Colors.grey[200],
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                color: Colors.grey[200],
                 child: ClipRRect(
-                   borderRadius: BorderRadius.circular(10),
-                   child: model.imageUrl != ""
+                  borderRadius: BorderRadius.circular(10),
+                  child: model.imageUrl != ""
                       ? Image.network(
                           model.imageUrl,
                           fit: BoxFit.cover,
-                          
                         )
                       : const Text("Impossible de charger"),
                 ),

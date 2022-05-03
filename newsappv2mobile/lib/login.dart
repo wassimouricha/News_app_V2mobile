@@ -19,8 +19,7 @@ class loginaid extends StatelessWidget {
                 );
               } else if (snapshot.hasError) {
                 return const Center(child: Text("une erreur s'est produite"));
-              }
-              else if (snapshot.hasData) {
+              } else if (snapshot.hasData) {
                 return const HomeScreen();
               } else {
                 return const Login();

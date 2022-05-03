@@ -28,7 +28,6 @@ class ListPresta extends StatelessWidget {
                   ),
                 ),
               ),
-          
               ListView.builder(
                 itemCount: prestation
                     .length, //voir presta.dart si tu veux utiliser la list locale
@@ -37,11 +36,11 @@ class ListPresta extends StatelessWidget {
                   presta: prestation[index],
                   press: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>  const DetailsScreen(),
-                        ),
-                        );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DetailsScreen(),
+                      ),
+                    );
                   },
                 ),
               )
@@ -76,13 +75,13 @@ class BigContenu extends StatelessWidget {
       height: 160,
       child: InkWell(
         onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>  const DetailsScreen(),
-                        ),
-                        );
-                  },
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DetailsScreen(),
+            ),
+          );
+        },
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[

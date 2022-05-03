@@ -118,12 +118,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 24,
               ),
-                 if(imageurl != null)  
-                  Image.network(
-                    imageurl!,     
-                    height: 200,
-                    width: 200,),
-              
+              if (imageurl != null)
+                Image.network(
+                  imageurl!,
+                  height: 200,
+                  width: 200,
+                ),
               delayedAnimation(
                 delay: 2500,
                 child: TextFieldWidget(
@@ -218,13 +218,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 24,
               ),
-            
-            
-            
-               
-             
-         
-          
+
               // delayedAnimation(
               //   delay: 2500,
               //   child: TextFieldWidget(
@@ -294,8 +288,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     // ignore: unused_local_variable
     final snapshot = await uploadTask!.whenComplete(() async {
-      final urlDownload = await   ref.ref(path).getDownloadURL();
-     
+      final urlDownload = await ref.ref(path).getDownloadURL();
+
       // ignore: avoid_print
       print("liens de téléchargement : $urlDownload");
       setState(() {

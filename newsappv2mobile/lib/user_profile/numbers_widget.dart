@@ -19,8 +19,7 @@ class NumbersWidget extends StatelessWidget {
     );
   }
 
-  Widget buildDivider() => const SizedBox(
-   height: 24, child: VerticalDivider());
+  Widget buildDivider() => const SizedBox(height: 24, child: VerticalDivider());
 
   Widget buildButton(BuildContext context, String value, String text) =>
       MaterialButton(

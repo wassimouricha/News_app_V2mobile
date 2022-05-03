@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:newsappv2mobile/home_screen.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -134,8 +133,9 @@ class _BottomPart extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: GestureDetector(
-                  onTap: () =>  Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomeScreen())),
+                onTap: () => Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (context) => const HomeScreen())),
                 child: Container(
                   height: 85.0,
                   width: 85.0,
@@ -148,7 +148,6 @@ class _BottomPart extends StatelessWidget {
                     size: 50.0,
                     color: Colors.white,
                   ),
-                 
                 ),
               ),
             ),

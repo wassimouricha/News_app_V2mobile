@@ -72,7 +72,8 @@ class _ScienceScreenState extends State<ScienceScreen> {
                   ),
                 ),
                 Text("Wassim News App v2",
-                    style:  GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
+                    style:
+                        GoogleFonts.poppins(fontSize: 15, color: Colors.black)),
               ],
             )),
         titleSpacing: 0,
@@ -83,57 +84,82 @@ class _ScienceScreenState extends State<ScienceScreen> {
         width: size.width,
         child: Column(
           children: [
-              ExpansionTile(title: Text('Science',
-        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
-         textAlign: TextAlign.center,
-        
-        ),
-        
-        children: [
-          ListTile(title: Text('Général',
-        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
-         textAlign: TextAlign.center,
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const HomeScreen())),
-        ),
-         ListTile(title: Text('Sport',
-        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
-         textAlign: TextAlign.center,
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const SportScreen())),
-        ),
-          ListTile(title: Text('Santé',
-        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
-         textAlign: TextAlign.center,
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const SanteScreen())),
-        ),
-           ListTile(title: Text('Tech',
-        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
-         textAlign: TextAlign.center,
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const TechScreen())),
-        ),
-        ListTile(title: Text('Business',
-        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
-         textAlign: TextAlign.center,
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const BizScreen())),
-        ),
-        ListTile(title: Text('Entertainement',
-        style:  GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w400),
-         textAlign: TextAlign.center,
-        ),
-        onTap:() => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const EntScreen())),
-        ),
-        ],
-        ),
+            ExpansionTile(
+              title: Text(
+                'Science',
+                style: GoogleFonts.poppins(
+                    fontSize: 24, fontWeight: FontWeight.w400),
+                textAlign: TextAlign.center,
+              ),
+              children: [
+                ListTile(
+                  title: Text(
+                    'Général',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen())),
+                ),
+                ListTile(
+                  title: Text(
+                    'Sport',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => const SportScreen())),
+                ),
+                ListTile(
+                  title: Text(
+                    'Santé',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => const SanteScreen())),
+                ),
+                ListTile(
+                  title: Text(
+                    'Tech',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => const TechScreen())),
+                ),
+                ListTile(
+                  title: Text(
+                    'Business',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => const BizScreen())),
+                ),
+                ListTile(
+                  title: Text(
+                    'Entertainement',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24, fontWeight: FontWeight.w400),
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () => Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                          builder: (context) => const EntScreen())),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -182,18 +208,18 @@ class _ScienceScreenState extends State<ScienceScreen> {
               borderRadius: BorderRadius.circular(10), color: Colors.grey[200]),
           child: Column(
             children: [
-               Container(
+              Container(
                 //le container de mon image
-                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                   margin: const EdgeInsets.symmetric(vertical: 5),
-                   color: Colors.grey[200],
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                color: Colors.grey[200],
                 child: ClipRRect(
-                   borderRadius: BorderRadius.circular(10),
-                   child: model.imageUrl != ""
+                  borderRadius: BorderRadius.circular(10),
+                  child: model.imageUrl != ""
                       ? Image.network(
                           model.imageUrl,
                           fit: BoxFit.cover,
-                          
                         )
                       : const Text("Impossible de charger"),
                 ),
@@ -204,7 +230,7 @@ class _ScienceScreenState extends State<ScienceScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Text(
                   model.title,
-                  style:  GoogleFonts.poppins(
+                  style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                   ),
@@ -229,15 +255,16 @@ class _ScienceScreenState extends State<ScienceScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        ("Auteur: ") + getTruncatedContent(model.author,20),
-                        style:  GoogleFonts.poppins(
+                        ("Auteur: ") + getTruncatedContent(model.author, 20),
+                        style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: Colors.grey[600],
                         ),
                       ),
                       Text(
-                        ("Publié le ") + getTruncatedContent(model.publishedAt,10),
-                        style:  GoogleFonts.poppins(
+                        ("Publié le ") +
+                            getTruncatedContent(model.publishedAt, 10),
+                        style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: Colors.grey[600],
                         ),
@@ -250,11 +277,11 @@ class _ScienceScreenState extends State<ScienceScreen> {
       ),
     );
   }
-      //fonction permettant de mettre des pointillé afin de ne pas mettre tout le texte et donc pas d'overflow
+
+  //fonction permettant de mettre des pointillé afin de ne pas mettre tout le texte et donc pas d'overflow
   String getTruncatedContent(String text, int truncatedNumber) {
     return text.length > truncatedNumber
         ? text.substring(0, truncatedNumber) + "..."
         : text;
   }
 }
-

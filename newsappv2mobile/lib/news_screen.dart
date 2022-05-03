@@ -26,7 +26,7 @@ class ReadingNews extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: getColors[1],
-         appBar: AppBar(
+        appBar: AppBar(
           //ici je code mon app bar qui me redirige vers l'accueil
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -42,19 +42,21 @@ class ReadingNews extends StatelessWidget {
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(
                         Icons.arrow_back_ios,
-                        color:  Color.fromARGB(255, 57, 130, 173),
-                        
+                        color: Color.fromARGB(255, 57, 130, 173),
                       ),
                     ),
                   ),
-                  Text("WNews v2",
-                      style: GoogleFonts.poppins(
-                          fontSize: 15,  fontWeight: FontWeight.bold, color: Colors.white),)
+                  Text(
+                    "WNews v2",
+                    style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  )
                 ],
               )),
           titleSpacing: 0,
         ),
-        
         extendBodyBehindAppBar: true,
         body: SizedBox(
           width: double.maxFinite,
@@ -108,7 +110,8 @@ class ReadingNews extends StatelessWidget {
                           Expanded(
                             child: Text(model.title,
                                 style: GoogleFonts.poppins(
-                                  color: const Color.fromARGB(255, 57, 130, 173),
+                                  color:
+                                      const Color.fromARGB(255, 57, 130, 173),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500,
                                 )),
@@ -128,7 +131,8 @@ class ReadingNews extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          ("Publié le ") + getTruncatedContent(model.publishedAt, 10),
+                          ("Publié le ") +
+                              getTruncatedContent(model.publishedAt, 10),
                           style: const TextStyle(
                             fontSize: 13,
                             color: Colors.black,
@@ -332,16 +336,15 @@ class ReadingNews extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 20,
-                left: 20,
-                child: Row(
+                  bottom: 20,
+                  left: 20,
+                  child: Row(
                     children: const [
-                         LikeButton(
-                           likeCount: 22,
-                     
-                         ),
+                      LikeButton(
+                        likeCount: 22,
+                      ),
                     ],
-              )),
+                  )),
             ],
           ),
         ),
@@ -351,7 +354,7 @@ class ReadingNews extends StatelessWidget {
 
   String getTruncatedContent(String text, int truncatedNumber) {
     return text.length > truncatedNumber
-        ? text.substring(0, truncatedNumber) 
+        ? text.substring(0, truncatedNumber)
         : text;
   }
 }

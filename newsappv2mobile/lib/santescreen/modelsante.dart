@@ -1,13 +1,13 @@
 class SanteApiModel {
-  String title, imageUrl, content, description,publishedAt,author,url;
+  String title, imageUrl, content, description, publishedAt, author, url;
 
   SanteApiModel(
       {required this.title,
       required this.url,
       required this.description,
       required this.content,
-       required this.publishedAt,
-        required this.author,
+      required this.publishedAt,
+      required this.author,
       required this.imageUrl});
 
   factory SanteApiModel.fromJson(Map<String, dynamic> jsonData) {
