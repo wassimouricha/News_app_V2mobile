@@ -7,12 +7,11 @@ class WelcomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+
       children: [
          const Center(
            child: Text(
-            "Bonjour et bienvenue sur NewsApp !",
+            "Bonjour et bienvenue !",
             style:  TextStyle(fontSize: 20),
         ),
          ),

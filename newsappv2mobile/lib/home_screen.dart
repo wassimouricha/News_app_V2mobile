@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const WelcomeWidget(),
+              const Center(child: WelcomeWidget()),
               const SizedBox(
                 height: 10,
               ),
