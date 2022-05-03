@@ -118,6 +118,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               const SizedBox(
                 height: 24,
               ),
+                 if(imageurl != null)  
                   Image.network(
                     imageurl!,     
                     height: 200,
@@ -218,7 +219,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 height: 24,
               ),
             
-               if(imageurl != null)  
+            
             
                
              
