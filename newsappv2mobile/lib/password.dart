@@ -209,14 +209,15 @@ class _connexionPageState extends State<connexionPage> {
                                               shape: const StadiumBorder(),
                                               primary: Colors.black,
                                               padding: const EdgeInsets.all(14),
+                                              
                                             ),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                const SizedBox(width: 10),
+                                                const SizedBox(width: 2),
                                                 Text(
-                                                  "Changer de mot de passe",
+                                                  "Reset",
                                                   style: GoogleFonts.poppins(
                                                     color: Colors.white,
                                                     fontSize: 16,
