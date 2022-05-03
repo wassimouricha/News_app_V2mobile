@@ -225,15 +225,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
              
          
           
-              delayedAnimation(
-                delay: 2500,
-                child: TextFieldWidget(
-                  label: "à propos",
-                  text: user.about,
-                  maxLines: 5,
-                  onChanged: (about) {},
-                ),
-              ),
+              // delayedAnimation(
+              //   delay: 2500,
+              //   child: TextFieldWidget(
+              //     label: "à propos",
+              //     text: user.about,
+              //     maxLines: 5,
+              //     onChanged: (about) {},
+              //   ),
+              // ),
             ]),
       );
     }
