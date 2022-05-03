@@ -255,7 +255,7 @@ class _ScienceScreenState extends State<ScienceScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        ("Auteur: ") + getTruncatedContent(model.author, 20),
+                        ("Auteur: ") + getTruncatedContent(model.author, 12),
                         style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: Colors.grey[600],
