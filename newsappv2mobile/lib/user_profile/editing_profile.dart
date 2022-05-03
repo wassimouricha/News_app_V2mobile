@@ -292,6 +292,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       uploadTask = ref.ref(path).putFile(file);
     });
 
+    // ignore: unused_local_variable
     final snapshot = await uploadTask!.whenComplete(() async {
       final urlDownload = await   ref.ref(path).getDownloadURL();
      
