@@ -98,8 +98,8 @@ class _connexionPageState extends State<connexionPage> {
 //la fonction future sign up ici indique que lorsque qu'on activeras la fonction
   Future signUp() async {
     final isValid = formKey.currentState!.validate();
-    if (!isValid)
-      return; //si les champs de texte sont valide alors la fonction se lance sinon la demande recommence
+    if (!isValid) {
+      return //si les champs de texte sont valide alors la fonction se lance sinon la demande recommence
 
     showDialog(
         context: context,
@@ -115,15 +115,16 @@ class _connexionPageState extends State<connexionPage> {
                 const CircularProgressIndicator(semanticsLabel: " inscription")
               ]),
             )));
+    }
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
-        password:
-            passwordController.text.trim(), //ajouter displayname plus tard
+        password: passwordController.text.trim(), //ajouter displayname plus tard
       );
     } on FirebaseAuthException catch (e) {
       //si il y a une erreur alors on va imprimer dans le terminal l'erreur
       print(e);
+      
     }
     //navigator.of(context) ne fonctionne pas !
     Navigator.of(context)
@@ -147,177 +148,174 @@ class _connexionPageState extends State<connexionPage> {
                   children: [
                     delayedAnimation(
                       delay: 1000,
-                      child: Form(
-                        key: formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Inscrivez vous avec votre adresse mail",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
-                              ),
+                      child: Form (
+                         key: formKey,
+                        child:Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Inscrivez vous avec votre adresse mail",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
                             ),
-                            const SizedBox(height: 35),
-                            Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 30,
-                              ),
-                              child: Column(
-                                children: [
-                                  delayedAnimation(
-                                    delay: 1500,
-                                    child: TextFormField(
-                                      controller: emailController,
-                                      decoration: InputDecoration(
-                                        labelText: 'Votre mail',
-                                        labelStyle: TextStyle(
-                                          color: Colors.grey[400],
-                                        ),
+                          ),
+                          const SizedBox(height: 35),
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 30,
+                            ),
+                            child: Column(
+                              children: [
+                                delayedAnimation(
+                                  delay: 1500,
+                                  child: TextFormField(
+                                    controller: emailController,
+                                    decoration: InputDecoration(
+                                      labelText: 'Votre mail',
+                                      labelStyle: TextStyle(
+                                        color: Colors.grey[400],
                                       ),
-                                      autovalidateMode: AutovalidateMode
+                                    ),
+                                     autovalidateMode: AutovalidateMode
                                           .onUserInteraction, //fonction permettant de montrer le texte
                                       validator: (email) => email != null &&
                                               !EmailValidator.validate(email)
                                           ? "entrer une adresse mail valide"
                                           : null, //on ajoute le package email validator afin de confirmer les informations et donc ici si l'email n'est pas valide alors le message  s'afficheras ou le mail est valide
-                                    ),
                                   ),
-                                  const SizedBox(height: 30),
-                                  delayedAnimation(
-                                    delay: 2000,
-                                    child: TextFormField(
-                                      controller: passwordController,
-                                      obscureText: _obscureText,
-                                      decoration: InputDecoration(
-                                        labelStyle: TextStyle(
-                                          color: Colors.grey[400],
-                                        ),
-                                        labelText: 'Mot de passe',
-                                        suffixIcon: IconButton(
-                                          icon: const Icon(
-                                            Icons.visibility,
-                                            color: Colors.black,
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              _obscureText = !_obscureText;
-                                            });
-                                          },
-                                        ),
+                                ),
+                                const SizedBox(height: 30),
+                                delayedAnimation(
+                                  delay: 2000,
+                                  child: TextFormField(
+                                    controller: passwordController,
+                                    obscureText: _obscureText,
+                                    decoration: InputDecoration(
+                                      labelStyle: TextStyle(
+                                        color: Colors.grey[400],
                                       ),
-                                      autovalidateMode: AutovalidateMode
+                                      labelText: 'Mot de passe',
+                                      suffixIcon: IconButton(
+                                        icon: const Icon(
+                                          Icons.visibility,
+                                          color: Colors.black,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _obscureText = !_obscureText;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                        autovalidateMode: AutovalidateMode
                                           .onUserInteraction, //fonction permettant de montrer le text
                                       validator: (value) => value != null &&
                                               value.length < 6
                                           ? "entrez minimum 6 caractères"
                                           : null, // ici si la taille du mot de passe n'est pas supérieur ou égal a 6  alors le message  s'afficheras ou alors le mdp est valide
+                                  ),
+                                ),
+                             
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 70),
+                          delayedAnimation(
+                            delay: 3000,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 10),
+                              height: 200,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Il est recommandé de s'inscrire avec votre adresse mail afin que nous puissions protéger vos données personnelles.",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.grey,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 11),
+                                  delayedAnimation(
+                                    delay: 3500,
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 40, vertical: 14),
+                                      child: Column(children: [
+                                        ElevatedButton(
+                                            onPressed:
+                                                signUp, //la fonction signIn
+                                            style: ElevatedButton.styleFrom(
+                                              shape: const StadiumBorder(),
+                                              primary: Colors.black,
+                                              padding: const EdgeInsets.all(14),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const SizedBox(width: 10),
+                                                Text(
+                                                  "Confirmer",
+                                                  style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                )
+                                              ],
+                                            )),
+                                      ]),
+                                    ),
+                                  ),
+                                  delayedAnimation(
+                                    delay: 3700,
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 40, vertical: 2),
+                                      child: Column(
+                                        children: [
+                                          RichText(
+                                            text: TextSpan(
+                                                style: const TextStyle(
+                                                    color: Colors.black),
+                                                text: "déjà inscrit ? ",
+                                                children: [
+                                                  TextSpan(
+                                                    recognizer: TapGestureRecognizer()
+                                                      ..onTap = () => Navigator
+                                                              .of(context)
+                                                          .pushReplacement(
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          const loginaid())),
+                                                    text: "Connectez-vous",
+                                                    style: const TextStyle(
+                                                      decoration: TextDecoration
+                                                          .underline,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ]),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 70),
-                            delayedAnimation(
-                              delay: 3000,
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                height: 200,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Il est recommandé de s'inscrire avec votre adresse mail afin que nous puissions protéger vos données personnelles.",
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.poppins(
-                                        color: Colors.grey,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 11),
-                                    delayedAnimation(
-                                      delay: 3500,
-                                      child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 40, vertical: 14),
-                                        child: Column(children: [
-                                          ElevatedButton(
-                                              onPressed:
-                                                  signUp, //la fonction signIn
-                                              style: ElevatedButton.styleFrom(
-                                                shape: const StadiumBorder(),
-                                                primary: Colors.black,
-                                                padding:
-                                                    const EdgeInsets.all(14),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const SizedBox(width: 10),
-                                                  Text(
-                                                    "Confirmer",
-                                                    style: GoogleFonts.poppins(
-                                                      color: Colors.white,
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  )
-                                                ],
-                                              )),
-                                        ]),
-                                      ),
-                                    ),
-                                    delayedAnimation(
-                                      delay: 3700,
-                                      child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 40, vertical: 2),
-                                        child: Column(
-                                          children: [
-                                            RichText(
-                                              text: TextSpan(
-                                                  style: const TextStyle(
-                                                      color: Colors.black),
-                                                  text: "déjà inscrit ? ",
-                                                  children: [
-                                                    TextSpan(
-                                                      recognizer: TapGestureRecognizer()
-                                                        ..onTap = () => Navigator
-                                                                .of(context)
-                                                            .pushReplacement(
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            const loginaid())),
-                                                      text: "Connectez-vous",
-                                                      style: const TextStyle(
-                                                        decoration:
-                                                            TextDecoration
-                                                                .underline,
-                                                        color: Colors.red,
-                                                      ),
-                                                    ),
-                                                  ]),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                    ),],
                 ),
               ),
             ],
